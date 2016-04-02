@@ -3,7 +3,7 @@ SVN to Git migration Shell script
 
 This migration script is a Shell script for migrating source code from Subversion (SVN) to Git without losing its history. It can be running in Linux/Unix environment. It provides 3 scripts:
 
-- `01_git_clone.sh`
+- `01_svn_clone.sh`
   
   Script for pulling all code from Subversion server into local Git repository.
 
