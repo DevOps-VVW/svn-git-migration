@@ -24,10 +24,10 @@ usage() {
     echo "---------------------------------------"
     echo "Usage: ./01_svn_clone [master/release] [svn_project_path_after_prefix] [local_destination_folder] [release_branch_name_if_any] [authors_file_if_any]"
     echo "Example: "
-	echo "   ./01_svn_clone.sh master project_name/trunk tcm_parent"
-	echo "   ./01_svn_clone.sh master project_name/trunk tcm_parent \"\" authors.txt"
-	echo "   ./01_svn_clone.sh release project_name/trunk tcm_parent v1.0"
-	echo "   ./01_svn_clone.sh release project_name/trunk tcm_parent v1.0 authors.txt"
+	echo "   ./01_svn_clone.sh master project_name/trunk project_name"
+	echo "   ./01_svn_clone.sh master project_name/trunk project_name \"\" authors.txt"
+	echo "   ./01_svn_clone.sh release project_name/trunk project_name v1.0"
+	echo "   ./01_svn_clone.sh release project_name/trunk project_name v1.0 authors.txt"
     echo
 }
 

@@ -24,8 +24,8 @@ usage() {
     echo "-------------------------------"
     echo "Usage: ./03_git_sync.sh [master/release] [svn_project_path] [project_name] [release_branch_name_if_any]"
     echo "Example: "
-	echo "   ./03_git_sync.sh master project_name/trunk project"
-	echo "   ./03_git_sync.sh release project_name/trunk project v1.0"
+	echo "   ./03_git_sync.sh master project_name/trunk project_name"
+	echo "   ./03_git_sync.sh release project_name/trunk project_name v1.0"
     echo
 }
 
