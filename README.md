@@ -31,6 +31,11 @@ This migration script is a Shell script for migrating source code from Subversio
 
 Clone this project into your local, and configure `00_config.sh` according to your environment. Then, just simply run `01_git_clone.sh`, `02_git_push.sh`, and `03_git_sync.sh` sequentially with a proper arguments.
 
+You must ensure that those files are executable on your machine. If not executable yet, you can run the following command:
+```sh
+chmod +x *.sh
+```
+
 
 > Feel free to fork this project for your specific purpose.
 
