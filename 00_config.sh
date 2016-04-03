@@ -19,7 +19,7 @@
 #
 
 # SVN base path
-SVN_BASE_PATH="https://svn.domain.com"
+# SVN_BASE_PATH="https://svn.domain.com"
 SVN_BASE_PATH=""
 
 # Git base path (SSH or HTTP/s)
