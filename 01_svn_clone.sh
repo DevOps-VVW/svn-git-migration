@@ -43,6 +43,8 @@ echo ">> Initializing..."
 BASE_PATH=$(pwd)
 LIB_PATH="$BASE_PATH/libs"
 
+DEFAULT_AUTHOR_EMAIL_SUFFIX="mycompany.com"
+
 # Read external configuration file
 source $BASE_PATH/00_config.sh
 
@@ -56,6 +58,11 @@ AUTHORS_FILE_PARAM=$5
 if [ "$1" = "master" ]; then
     AUTHORS_FILE="authors_master.txt"
     DESTINATION_FOLDER="$BASE_PATH/repo/$PROJECT_NAME/$MASTER_BRANCH_FOLDER_NAME"
+	
+# If develop branch
+elif [ "$1" = "develop" ]; then
+    AUTHORS_FILE="authors_develop.txt"
+    DESTINATION_FOLDER="$BASE_PATH/repo/$PROJECT_NAME/$DEVELOP_BRANCH_FOLDER_NAME"
 
 # If release branch
 elif [ "$1" = "release" ]; then
@@ -80,10 +87,12 @@ if [ -z "$AUTHORS_FILE_PARAM" ]; then
     java -jar $LIB_PATH/svn-migration-scripts.jar authors $SVN_BASE_PATH/$SVN_PROJECT_PATH > $BASE_PATH/repo/$PROJECT_NAME/$AUTHORS_FILE
     AUTHORS_FILE_PARAM=$BASE_PATH/repo/$PROJECT_NAME/$AUTHORS_FILE
 fi
+echo "(no author) = no author <no_author@$SVN_AUTHOR_EMAIL_SUFFIX>" >> $BASE_PATH/repo/$PROJECT_NAME/$AUTHORS_FILE
+sed -i -e "s/$DEFAULT_AUTHOR_EMAIL_SUFFIX/$SVN_AUTHOR_EMAIL_SUFFIX/g" $BASE_PATH/repo/$PROJECT_NAME/$AUTHORS_FILE
 
 # Migrating $SVN_BASE_PATH/$SVN_PROJECT_PATH into local repository...
 echo ">> Migrating $SVN_BASE_PATH/$SVN_PROJECT_PATH into local repository..."
-git svn clone $SVN_BASE_PATH/$SVN_PROJECT_PATH -A $BASE_PATH/repo/$PROJECT_NAME/$AUTHORS_FILE $DESTINATION_FOLDER
+git svn clone $SVN_BASE_PATH/$SVN_PROJECT_PATH --username $SVN_USER -A $BASE_PATH/repo/$PROJECT_NAME/$AUTHORS_FILE $DESTINATION_FOLDER
 
 # Done
 echo ">> Done!"

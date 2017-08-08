@@ -22,6 +22,14 @@
 # SVN_BASE_PATH="https://svn.domain.com"
 SVN_BASE_PATH=""
 
+# SVN username
+# SVN_USER="your-username"
+SVN_USER="<SVN_USERNAME>"
+
+# SVN author's email suffix
+# SVN_AUTHOR_EMAIL_SUFFIX="your-company.com"
+SVN_AUTHOR_EMAIL_SUFFIX="<YOUR_DOMAIN>"
+
 # Git base path (SSH or HTTP/s)
 # GIT_BASE_PATH="https://git.domain.com"
 GIT_BASE_PATH=""
@@ -29,5 +37,8 @@ GIT_BASE_PATH=""
 # Folder name for storing trunk version code
 MASTER_BRANCH_FOLDER_NAME="master"
 
+# Folder name for storing trunk version code
+DEVELOP_BRANCH_FOLDER_NAME="develop"
+
 # Folder name for storing release branches code
-RELEASE_BRANCH_FOLDER_PREFIX="rel"
+RELEASE_BRANCH_FOLDER_PREFIX="release"
