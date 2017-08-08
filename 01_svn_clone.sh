@@ -43,9 +43,7 @@ echo ">> Initializing..."
 BASE_PATH=$(pwd)
 LIB_PATH="$BASE_PATH/libs"
 
-DEFAULT_AUTHOR_EMAIL_SUFFIX="mycompany.com"
-
-# Read external configuration file
+DEFAULT_AUTHOR_EMAIL_SUFFIX="mycompany.com"# Read external configuration file
 source $BASE_PATH/00_config.sh
 
 # Catch all arguments
@@ -73,11 +71,7 @@ fi
 # Cleaning up the workspace...
 echo ">> Cleaning up the workspace..."
 if [ -d $BASE_PATH/repo/$PROJECT_NAME ]; then
-    if [ "$1" = "master" ]; then
-        rm -fR $BASE_PATH/repo/$PROJECT_NAME
-    elif [ "$1" = "release" ]; then
-        rm -fR $BASE_PATH/repo/$PROJECT_NAME/$RELEASE_BRANCH_FOLDER_PREFIX-$RELEASE_BRANCH_NAME
-    fi
+    rm -fR $DESTINATION_FOLDER
 fi
 mkdir -p $DESTINATION_FOLDER
 
