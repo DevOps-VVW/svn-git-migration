@@ -43,7 +43,9 @@ echo ">> Initializing..."
 BASE_PATH=$(pwd)
 LIB_PATH="$BASE_PATH/libs"
 
-DEFAULT_AUTHOR_EMAIL_SUFFIX="mycompany.com"# Read external configuration file
+DEFAULT_AUTHOR_EMAIL_SUFFIX="mycompany.com"
+
+# Read external configuration file
 source $BASE_PATH/00_config.sh
 
 # Catch all arguments
@@ -66,6 +68,10 @@ elif [ "$1" = "develop" ]; then
 elif [ "$1" = "release" ]; then
     AUTHORS_FILE="authors_$RELEASE_BRANCH_NAME.txt"
     DESTINATION_FOLDER="$BASE_PATH/repo/$PROJECT_NAME/$RELEASE_BRANCH_FOLDER_PREFIX-$RELEASE_BRANCH_NAME"
+	
+else
+	AUTHORS_FILE="authors_$1.txt"
+    DESTINATION_FOLDER="$BASE_PATH/repo/$PROJECT_NAME/$1"
 fi
 
 # Cleaning up the workspace...
@@ -80,9 +86,9 @@ if [ -z "$AUTHORS_FILE_PARAM" ]; then
     echo "Extracting all authors of $PROJECT_NAME..."
     java -jar $LIB_PATH/svn-migration-scripts.jar authors $SVN_BASE_PATH/$SVN_PROJECT_PATH > $BASE_PATH/repo/$PROJECT_NAME/$AUTHORS_FILE
     AUTHORS_FILE_PARAM=$BASE_PATH/repo/$PROJECT_NAME/$AUTHORS_FILE
+	echo "(no author) = no author <no_author@$SVN_AUTHOR_EMAIL_SUFFIX>" >> $BASE_PATH/repo/$PROJECT_NAME/$AUTHORS_FILE
+	sed -i -e "s/$DEFAULT_AUTHOR_EMAIL_SUFFIX/$SVN_AUTHOR_EMAIL_SUFFIX/g" $BASE_PATH/repo/$PROJECT_NAME/$AUTHORS_FILE
 fi
-echo "(no author) = no author <no_author@$SVN_AUTHOR_EMAIL_SUFFIX>" >> $BASE_PATH/repo/$PROJECT_NAME/$AUTHORS_FILE
-sed -i -e "s/$DEFAULT_AUTHOR_EMAIL_SUFFIX/$SVN_AUTHOR_EMAIL_SUFFIX/g" $BASE_PATH/repo/$PROJECT_NAME/$AUTHORS_FILE
 
 # Migrating $SVN_BASE_PATH/$SVN_PROJECT_PATH into local repository...
 echo ">> Migrating $SVN_BASE_PATH/$SVN_PROJECT_PATH into local repository..."
